@@ -1,1 +1,2 @@
-# doj_data_challenge_2024
+# Measuring Community Impacts of the Opioid Epidemic
+This project compares State Overdose Deaths and State Labs Positive for Opioids as metrics for assessing community-level impacts of the opioid epidemic. Data from HRSA's Health Center Program will be used to operationalize investments in community-oriented opioid treatment and recovery services in two fixed effects models. We aim to foster a holistic, community-oriented partnership between the public safety and public health sectors in tackling the opioid epidemic.
