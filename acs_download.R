@@ -34,7 +34,7 @@ total_pop_allyrs <- do.call(rbind, population_list)
 write.csv(total_pop_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Population.csv')
 
 
-# Income
+# Median Income
 
 income_list <- list()
 
@@ -54,6 +54,54 @@ for (year in years) {
 median_inc_allyrs <- do.call(rbind, income_list)
 
 write.csv(median_inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income.csv')
+
+
+# Household Income
+
+inc_list <- list()
+inc_vars <- c(
+  'B19001_001',
+  'B19001_002',
+  'B19001_003',
+  'B19001_004',
+  'B19001_005',
+  'B19001_006',
+  'B19001_007',
+  'B19001_008',
+  'B19001_009',
+  'B19001_010',
+  'B19001_011',
+  'B19001_012',
+  'B19001_013',
+  'B19001_014',
+  'B19001_015',
+  'B19001_016',
+  'B19001_017')
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in emp_vars) { 
+    inc <- get_acs(geography = "state", 
+                   variables = c(inc = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    inc$year <- year
+    inc$var <- var
+    
+    year_data[[var]] <- inc 
+  }
+  
+  inc_list[[year]] <- year_data 
+}
+
+flattened_inc_list <- flatten(inc_list)
+inc_allyrs <- bind_rows(flattened_inc_list)
+
+
+write.csv(inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income Level.csv')
+
 
 
 # Age (Sex by Age)
@@ -169,14 +217,215 @@ write.csv(sex_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/
 
 
 
-# Race
+# Race/Ethnicity
+race_list <- list()
+race_vars <- c(
+  'B03002_002',
+  'B03002_003',
+  'B03002_004',
+  'B03002_005',
+  'B03002_006',
+  'B03002_007',
+  'B03002_008',
+  'B03002_009',
+  'B03002_010',
+  'B03002_011',
+  'B03002_012',
+  'B03002_013',
+  'B03002_014',
+  'B03002_015',
+  'B03002_016',
+  'B03002_017',
+  'B03002_018',
+  'B03002_019',
+  'B03002_020',
+  'B03002_021')
 
-B02001_002
-B02001_003
-B02001_004
-B02001_005
-B02001_006
-B02001_007
-B02001_008
-B02001_009
-B02001_010
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in race_vars) { 
+    race <- get_acs(geography = "state", 
+                   variables = c(race = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    race$year <- year
+    race$var <- var
+    
+    year_data[[var]] <- race 
+  }
+  
+  race_list[[year]] <- year_data 
+}
+
+flattened_race_list <- flatten(race_list)
+race_allyrs <- bind_rows(flattened_race_list)
+
+
+write.csv(race_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Race Ethnicity.csv')
+
+
+# Education
+
+edu_list <- list()
+edu_vars <- c(
+  'B15003_001',
+  'B15003_002',
+  'B15003_003',
+  'B15003_004',
+  'B15003_005',
+  'B15003_006',
+  'B15003_007',
+  'B15003_008',
+  'B15003_009',
+  'B15003_010',
+  'B15003_011',
+  'B15003_012',
+  'B15003_013',
+  'B15003_014',
+  'B15003_015',
+  'B15003_016',
+  'B15003_017',
+  'B15003_018',
+  'B15003_019',
+  'B15003_020',
+  'B15003_021',
+  'B15003_022',
+  'B15003_023',
+  'B15003_024',
+  'B15003_025')
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in edu_vars) { 
+    edu <- get_acs(geography = "state", 
+                    variables = c(edu = var), 
+                    year = year,
+                    survey = "acs1")
+    
+    edu$year <- year
+    edu$var <- var
+    
+    year_data[[var]] <- edu 
+  }
+  
+  edu_list[[year]] <- year_data 
+}
+
+flattened_edu_list <- flatten(edu_list)
+edu_allyrs <- bind_rows(flattened_edu_list)
+
+
+write.csv(edu_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Education.csv')
+
+
+
+# Food Stamps/SNAP
+
+snap_list <- list()
+snap_vars <- c(
+  'C22001_001',
+  'C22001_002',
+  'C22001_003')
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in snap_vars) { 
+    snap <- get_acs(geography = "state", 
+                   variables = c(snap = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    snap$year <- year
+    snap$var <- var
+    
+    year_data[[var]] <- snap 
+  }
+  
+  snap_list[[year]] <- year_data 
+}
+
+flattened_snap_list <- flatten(snap_list)
+snap_allyrs <- bind_rows(flattened_snap_list)
+
+
+write.csv(snap_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Food Stamps.csv')
+
+
+# Veteran Status
+
+vet_list <- list()
+vet_vars <- c(
+  'B21001_001',
+  'B21001_002',
+  'B21001_003'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in vet_vars) { 
+    vet <- get_acs(geography = "state", 
+                    variables = c(vet = var), 
+                    year = year,
+                    survey = "acs1")
+    
+    vet$year <- year
+    vet$var <- var
+    
+    year_data[[var]] <- vet 
+  }
+  
+  vet_list[[year]] <- year_data 
+}
+
+flattened_vet_list <- flatten(vet_list)
+vet_allyrs <- bind_rows(flattened_vet_list)
+
+
+write.csv(vet_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Veteran.csv')
+
+
+# Employment
+
+emp_list <- list()
+emp_vars <- c(
+  'B23025_001',
+  'B23025_002',
+  'B23025_003',
+  'B23025_004',
+  'B23025_005',
+  'B23025_006',
+  'B23025_007'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in emp_vars) { 
+    emp <- get_acs(geography = "state", 
+                   variables = c(emp = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    emp$year <- year
+    emp$var <- var
+    
+    year_data[[var]] <- emp 
+  }
+  
+  emp_list[[year]] <- year_data 
+}
+
+flattened_emp_list <- flatten(emp_list)
+emp_allyrs <- bind_rows(flattened_emp_list)
+
+
+write.csv(emp_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Employment.csv')
+
+
+
+
