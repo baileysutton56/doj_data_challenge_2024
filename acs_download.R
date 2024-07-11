@@ -428,4 +428,128 @@ write.csv(emp_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/
 
 
 
+# Veteran Status
+
+vet_list <- list()
+vet_vars <- c(
+  'B21001_001',
+  'B21001_002',
+  'B21001_003'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in vet_vars) { 
+    vet <- get_acs(geography = "state", 
+                    variables = c(vet = var), 
+                    year = year,
+                    survey = "acs1")
+    
+    vet$year <- year
+    vet$var <- var
+    
+    year_data[[var]] <- vet 
+  }
+  
+  vet_list[[year]] <- year_data 
+}
+
+flattened_vet_list <- flatten(vet_list)
+vet_allyrs <- bind_rows(flattened_vet_list)
+
+
+write.csv(vet_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Veteran.csv')
+
+
+# Employment
+
+emp_list <- list()
+emp_vars <- c(
+  'B23025_001',
+  'B23025_002',
+  'B23025_003',
+  'B23025_004',
+  'B23025_005',
+  'B23025_006',
+  'B23025_007'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in emp_vars) { 
+    emp <- get_acs(geography = "state", 
+                   variables = c(emp = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    emp$year <- year
+    emp$var <- var
+    
+    year_data[[var]] <- emp 
+  }
+  
+  emp_list[[year]] <- year_data 
+}
+
+flattened_emp_list <- flatten(emp_list)
+emp_allyrs <- bind_rows(flattened_emp_list)
+
+
+write.csv(emp_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Employment.csv')
+
+
+# Health Insurance
+
+ins_list <- list()
+ins_vars <- c(
+  'C27001_001',
+  'C27001_002',
+  'C27001_003',
+  'C27001_004',
+  'C27001_005',
+  'C27001_006',
+  'C27001_007',
+  'C27001_008',
+  'C27001_009',
+  'C27001_010',
+  'C27001_011',
+  'C27001_012',
+  'C27001_013',
+  'C27001_014',
+  'C27001_015',
+  'C27001_016',
+  'C27001_017',
+  'C27001_018',
+  'C27001_019',
+  'C27001_020',
+  'C27001_021'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in ins_vars) { 
+    ins <- get_acs(geography = "state", 
+                   variables = c(ins = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    ins$year <- year
+    ins$var <- var
+    
+    year_data[[var]] <- ins 
+  }
+  
+  ins_list[[year]] <- year_data 
+}
+
+flattened_ins_list <- flatten(ins_list)
+ins_allyrs <- bind_rows(flattened_ins_list)
+
+
+write.csv(ins_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Health Insurance.csv')
+
+
 
