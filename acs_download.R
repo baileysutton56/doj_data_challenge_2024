@@ -553,3 +553,74 @@ write.csv(ins_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/
 
 
 
+# Poverty
+
+pov_list <- list()
+pov_vars <- c(
+  'B17020_002',
+  'B17020_010'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in pov_vars) { 
+    pov <- get_acs(geography = "state", 
+                   variables = c(pov = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    pov$year <- year
+    pov$var <- var
+    
+    year_data[[var]] <- pov 
+  }
+  
+  pov_list[[year]] <- year_data 
+}
+
+flattened_pov_list <- flatten(pov_list)
+pov_allyrs <- bind_rows(flattened_pov_list)
+
+
+write.csv(pov_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Poverty.csv')
+
+
+
+
+# Disability
+
+dis_list <- list()
+dis_vars <- c(
+  'B18120_004',
+  'B18120_011',
+  'B18120_013',
+  'B18120_020',
+  'B18120_022',
+  'B18120_029'
+)
+
+for (year in years) {
+  year_data <- list()  
+  
+  for (var in dis_vars) { 
+    dis <- get_acs(geography = "state", 
+                   variables = c(dis = var), 
+                   year = year,
+                   survey = "acs1")
+    
+    dis$year <- year
+    dis$var <- var
+    
+    year_data[[var]] <- dis 
+  }
+  
+  dis_list[[year]] <- year_data 
+}
+
+flattened_dis_list <- flatten(dis_list)
+dis_allyrs <- bind_rows(flattened_dis_list)
+
+
+write.csv(dis_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Disability.csv')
+
