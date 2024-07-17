@@ -81,7 +81,7 @@ inc_vars <- c(
 for (year in years) {
   year_data <- list()  
   
-  for (var in emp_vars) { 
+  for (var in inc_vars) { 
     inc <- get_acs(geography = "state", 
                    variables = c(inc = var), 
                    year = year,
@@ -100,7 +100,7 @@ flattened_inc_list <- flatten(inc_list)
 inc_allyrs <- bind_rows(flattened_inc_list)
 
 
-write.csv(inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income Level.csv')
+write.csv(inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income.csv')
 
 
 

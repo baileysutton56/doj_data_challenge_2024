@@ -1,29 +1,6 @@
 library(tidyverse)
 library(readxl)
 
-# Disability
-
-# With disability: 4, 13, 22 :: 'B18120_004','B18120_013','B18120_022'
-# No disability: 11, 20, 29
-
-wide_disability <- Disability %>%
-  pivot_wider(names_from = var, values_from = estimate)
-
-wide_disability_clean <- wide_disability %>%
-  mutate(with_disability = case_when(year != 2020 ~ rowSums(across(c(B18120_004,B18120_013,B18120_022))),
-                                     .default = with_disability)) %>%
-  mutate(no_disability = case_when(year != 2020 ~ rowSums(across(c(B18120_011,B18120_020,B18120_029))),
-                                   .default = no_disability))
-
-wide_disability_clean <- select(wide_disability_clean, 
-                                NAME, 
-                                year, 
-                                with_disability, 
-                                no_disability)
-
-write.csv(wide_disability_clean, 'disability.csv')
-
-
 # Education
 
 # less_9th	B15003_002,B15003_003, B15003_004, B15003_005, B15003_006, B15003_007, B15003_008, B15003_009, B15003_010, B15003_011, B15003_012
@@ -54,11 +31,11 @@ wide_education_clean <- wide_education %>%
   mutate(assoc = case_when(year != 2020 ~ rowSums(across(c(B15003_021))))) %>%
   mutate(bach = case_when(year != 2020 ~ rowSums(across(c(B15003_022))))) %>%
   mutate(grad_prof = case_when(year != 2020 ~ rowSums(across(c(B15003_023, B15003_024, B15003_025)))))
-  
+
 # Select new variables
 wide_education_clean <- select(wide_education_clean, 
-                                NAME, 
-                                year, 
+                               NAME, 
+                               year, 
                                less_9th,
                                hs_no_diploma,
                                hs_grad,
@@ -83,5 +60,4 @@ education_clean_all <- education_clean_all %>%
 
 # Export CSV
 write.csv(education_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/education.csv')
-
 
