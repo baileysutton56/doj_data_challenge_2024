@@ -1,0 +1,313 @@
+---
+title: "Final Models"
+output: html_document
+date: "2024-07-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(plm)
+library(stargazer)
+```
+
+#Import Data
+```{r Import Data}
+
+models_full <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data/models_full.csv")
+```
+
+#Clean Data
+```{r Convert Year}
+
+models_full$year <- as.character(models_full$year)
+```
+
+#Overdose Deaths Base Model
+This model will serve as the base comparison for all of the testing models devised for this project
+```{r Subset Data}
+
+#subset model data
+deaths_base_model_visits <- subset(models_full, select = -c(`tot_opioids`, 
+                                                            `sub_use_patients`,
+                                                            `sub_use_accrued_cost`,
+                                                            `sub_use_direct_cost`,
+                                                            `pat_patients`,
+                                                            `tot_deaths`,
+                                                            `Population`,
+                                                            `crude_rate`))
+
+deaths_base_model_patients <- subset(models_full, select = -c(`tot_opioids`, 
+                                                              `sub_use_visits`,
+                                                              `sub_use_accrued_cost`,
+                                                              `sub_use_direct_cost`,
+                                                              `pat_patients`,
+                                                              `tot_deaths`,
+                                                              `Population`,
+                                                              `crude_rate`))
+
+deaths_base_model_accrued <- subset(models_full, select = -c(`tot_opioids`, 
+                                                             `sub_use_visits`,
+                                                             `sub_use_patients`,
+                                                             `sub_use_direct_cost`,
+                                                             `pat_patients`,
+                                                             `tot_deaths`,
+                                                             `Population`,
+                                                             `crude_rate`))
+
+deaths_base_model_direct <- subset(models_full, select = -c(`tot_opioids`, 
+                                                            `sub_use_visits`,
+                                                            `sub_use_patients`,
+                                                            `sub_use_accrued_cost`,
+                                                            `pat_patients`,
+                                                            `tot_deaths`,
+                                                            `Population`,
+                                                            `crude_rate`))
+
+deaths_base_model_pat <- subset(models_full, select = -c(`tot_opioids`, 
+                                                         `sub_use_visits`,
+                                                         `sub_use_patients`,
+                                                         `sub_use_accrued_cost`,
+                                                         `sub_use_direct_cost`,
+                                                         `tot_deaths`,
+                                                         `Population`,
+                                                         `crude_rate`))
+
+deaths_base_model_pat <- deaths_base_model_pat %>%
+  subset(year != 2015)
+```
+
+```{r Base Models}
+
+deaths_visits_fe <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_visits,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+deaths_patients_fe <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_patients,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+                        
+deaths_accrued_fe  <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_accrued,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+deaths_direct_fe  <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_direct,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+deaths_pat_fe  <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_pat,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+```
+
+``` {r Display Regression Results}
+
+stargazer(deaths_visits_fe,
+          digits=3,
+          header=FALSE,
+          type="text",
+          title="Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"))
+
+stargazer(deaths_patients_fe,
+          digits=3,
+          header=FALSE,
+          type="text",
+          title="Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"))
+
+stargazer(deaths_accrued_fe,
+          digits=3,
+          header=FALSE,
+          type="text",
+          title="Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"))
+
+stargazer(deaths_direct_fe,
+          digits=3,
+          header=FALSE,
+          type="text",
+          title="Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"))
+
+stargazer(deaths_pat_fe,
+          digits=3,
+          header=FALSE,
+          type="text",
+          title="Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"))
+```
+
+```{r Multiple Regression Model with Fixed Effects}
+
+deaths_base_model_all <- subset(models_full, select = -c(`tot_opioids`, 
+                                                         `tot_deaths`,
+                                                         `sub_use_accrued_cost`,
+                                                         `sub_use_direct_cost`,
+                                                         `Population`,
+                                                         `crude_rate`))
+
+deaths_base_model_all <- deaths_base_model_all %>%
+  subset(year != 2015)
+
+deaths_all_fe <- plm(age_adj_rate ~ .,
+                        data = deaths_base_model_all,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+stargazer(deaths_all_fe, deaths_pat_fe, deaths_patients_fe, deaths_visits_fe,
+          digits=3,
+          header=FALSE,
+          type="html",
+          title="Table 1. Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"),
+          dep.var.labels = c("Drug Overdose Death Count"),
+          out="table1.htm")
+```
+
+```{r Subsets for Opioid Labs}
+
+labs_base_model_visits <- subset(models_full, select = -c(`sub_use_patients`,
+                                                            `sub_use_accrued_cost`,
+                                                            `sub_use_direct_cost`,
+                                                            `pat_patients`,
+                                                            `tot_deaths`,
+                                                            `Population`,
+                                                            `crude_rate`,
+                                                            `age_adj_rate`))
+
+labs_base_model_patients <- subset(models_full, select = -c(`age_adj_rate`, 
+                                                              `sub_use_visits`,
+                                                              `sub_use_accrued_cost`,
+                                                              `sub_use_direct_cost`,
+                                                              `pat_patients`,
+                                                              `tot_deaths`,
+                                                              `Population`,
+                                                              `crude_rate`))
+
+labs_base_model_accrued <- subset(models_full, select = -c(`age_adj_rate`, 
+                                                             `sub_use_visits`,
+                                                             `sub_use_patients`,
+                                                             `sub_use_direct_cost`,
+                                                             `pat_patients`,
+                                                             `tot_deaths`,
+                                                             `Population`,
+                                                             `crude_rate`))
+
+labs_base_model_direct <- subset(models_full, select = -c(`age_adj_rate`, 
+                                                            `sub_use_visits`,
+                                                            `sub_use_patients`,
+                                                            `sub_use_accrued_cost`,
+                                                            `pat_patients`,
+                                                            `tot_deaths`,
+                                                            `Population`,
+                                                            `crude_rate`))
+
+labs_base_model_pat <- subset(models_full, select = -c(`age_adj_rate`, 
+                                                         `sub_use_visits`,
+                                                         `sub_use_patients`,
+                                                         `sub_use_accrued_cost`,
+                                                         `sub_use_direct_cost`,
+                                                         `tot_deaths`,
+                                                         `Population`,
+                                                         `crude_rate`))
+
+labs_base_model_pat <- labs_base_model_pat %>%
+  subset(year != 2015)
+
+labs_base_model_all <- subset(models_full, select = -c(`age_adj_rate`, 
+                                                       `sub_use_accrued_cost`,
+                                                         `sub_use_direct_cost`,
+                                                         `tot_deaths`,
+                                                         `Population`,
+                                                         `crude_rate`))
+
+labs_base_model_all <- labs_base_model_all %>%
+  subset(year != 2015)
+```
+
+``` {r Labs models} 
+
+labs_visits_fe <- plm(tot_opioids ~ .,
+                        data = labs_base_model_visits,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+labs_patients_fe <- plm(tot_opioids ~ .,
+                        data = labs_base_model_patients,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+                        
+labs_accrued_fe  <- plm(tot_opioids ~ .,
+                        data = labs_base_model_accrued,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+labs_direct_fe  <- plm(tot_opioids ~ .,
+                        data = labs_base_model_direct,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+labs_pat_fe  <- plm(tot_opioids ~ .,
+                        data = labs_base_model_pat,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+
+labs_all_fe <- plm(tot_opioids ~ .,
+                        data = labs_base_model_all,
+                        index = c("state", "year"),
+                        model = "within",
+                        effect= "twoways",
+                        na.action = na.omit)
+```
+
+```{r Labs models Display results}
+
+stargazer(labs_all_fe, labs_pat_fe, labs_visits_fe, labs_patients_fe, #labs_direct_fe, labs_accrued_fe, 
+          digits=3,
+          header=FALSE,
+          type="html",
+          title="Table 2. Time-Entity Fixed Effects Regression Results",
+          single.row=TRUE,
+          omit.stat=c("ser","f"),
+          dep.var.labels=c("NFLIS Opioid-Positive Substance Reports"),
+          out="table2.htm")
+```
+
+

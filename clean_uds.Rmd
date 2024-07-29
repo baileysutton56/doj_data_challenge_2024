@@ -1,0 +1,432 @@
+---
+title: "Clean UDS Data"
+output: html_document
+date: "2024-07-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(readxl)
+library(tidyverse)
+```
+
+#State
+```{r Import Data}
+
+uds_state_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "HealthCenterInfo")
+uds_state_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "HealthCenterInfo")
+uds_state_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "HealthCenterInfo")
+uds_state_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "HealthCenterInfo")
+uds_state_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "HealthCenterInfo")
+uds_state_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "HealthCenterInfo")
+uds_state_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "HealthCenterInfo")
+uds_state_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "HealthCenterInfo")
+```
+
+```{r Clean Data}
+
+uds_state_2015_sub <- subset(uds_state_2015, select = c("Grant Number", "Health Center State"))
+uds_state_2016_sub <- subset(uds_state_2016, select = c("Grant Number", "Health Center State"))
+uds_state_2017_sub <- subset(uds_state_2017, select = c("Grant Number", "Health Center State"))
+uds_state_2018_sub <- subset(uds_state_2018, select = c("Grant Number", "Health Center State"))
+uds_state_2019_sub <- subset(uds_state_2019, select = c("Grant Number", "Health Center State"))
+uds_state_2020_sub <- subset(uds_state_2020, select = c("Grant Number", "Health Center State"))
+uds_state_2021_sub <- subset(uds_state_2021, select = c("GrantNumber", "HealthCenterState"))
+uds_state_2022_sub <- subset(uds_state_2022, select = c("GrantNumber", "HealthCenterState"))
+```
+
+```{r Rename Variables}
+
+uds_state_2015_sub <- rename(uds_state_2015_sub, grant_num = 'Grant Number')
+uds_state_2015_sub <- rename(uds_state_2015_sub, state = 'Health Center State')
+
+uds_state_2016_sub <- rename(uds_state_2016_sub, grant_num = 'Grant Number')
+uds_state_2016_sub <- rename(uds_state_2016_sub, state = 'Health Center State')
+
+uds_state_2017_sub <- rename(uds_state_2017_sub, grant_num = 'Grant Number')
+uds_state_2017_sub <- rename(uds_state_2017_sub, state = 'Health Center State')
+
+uds_state_2018_sub <- rename(uds_state_2018_sub, grant_num = 'Grant Number')
+uds_state_2018_sub <- rename(uds_state_2018_sub, state = 'Health Center State')
+
+uds_state_2019_sub <- rename(uds_state_2019_sub, grant_num = 'Grant Number')
+uds_state_2019_sub <- rename(uds_state_2019_sub, state = 'Health Center State')
+
+uds_state_2020_sub <- rename(uds_state_2020_sub, grant_num = 'Grant Number')
+uds_state_2020_sub <- rename(uds_state_2020_sub, state = 'Health Center State')
+
+uds_state_2021_sub <- rename(uds_state_2021_sub, grant_num = 'GrantNumber')
+uds_state_2021_sub <- rename(uds_state_2021_sub, state = 'HealthCenterState')
+
+uds_state_2022_sub <- rename(uds_state_2022_sub, grant_num = 'GrantNumber')
+uds_state_2022_sub <- rename(uds_state_2022_sub, state = 'HealthCenterState')
+```
+
+#Table 6A
+```{r Import Data}
+
+uds_6A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table6A", skip = 1)
+```
+
+```{r Clean Data}
+
+uds_6A_2015_sub <- subset(uds_6A_2015, select = c("-...2", "T6a_L19_Ca", "T6a_L19_Cb"))
+uds_6A_2016_sub <- subset(uds_6A_2016, select = c("-...2", "T6a_L19_Ca", "T6a_L19_Cb"))
+uds_6A_2017_sub <- subset(uds_6A_2017, select = c("-...2", "T6a_L19_Ca", "T6a_L19_Cb"))
+uds_6A_2018_sub <- subset(uds_6A_2018, select = c("-...2", "T6a_L19_Ca", "T6a_L19_Cb"))
+uds_6A_2019_sub <- subset(uds_6A_2019, select = c("-...2", "T6a_L19_Ca", "T6a_L19_Cb"))
+uds_6A_2020_sub <- subset(uds_6A_2020, select = c("...2", "Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)", "Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)"))
+uds_6A_2021_sub <- subset(uds_6A_2021, select = c("...2", "Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)", "Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)"))
+uds_6A_2022_sub <- subset(uds_6A_2022, select = c("...2", "Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)", "Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)"))
+```
+
+```{r Rename Variables}
+
+uds_6A_2015_sub <- rename(uds_6A_2015_sub, grant_num = '-...2')
+uds_6A_2015_sub <- rename(uds_6A_2015_sub, sub_use_visits = 'T6a_L19_Ca')
+uds_6A_2015_sub <- rename(uds_6A_2015_sub, sub_use_patients = 'T6a_L19_Cb')
+
+uds_6A_2016_sub <- rename(uds_6A_2016_sub, grant_num = '-...2')
+uds_6A_2016_sub <- rename(uds_6A_2016_sub, sub_use_visits = 'T6a_L19_Ca')
+uds_6A_2016_sub <- rename(uds_6A_2016_sub, sub_use_patients = 'T6a_L19_Cb')
+
+uds_6A_2017_sub <- rename(uds_6A_2017_sub, grant_num = '-...2')
+uds_6A_2017_sub <- rename(uds_6A_2017_sub, sub_use_visits = 'T6a_L19_Ca')
+uds_6A_2017_sub <- rename(uds_6A_2017_sub, sub_use_patients = 'T6a_L19_Cb')
+
+uds_6A_2018_sub <- rename(uds_6A_2018_sub, grant_num = '-...2')
+uds_6A_2018_sub <- rename(uds_6A_2018_sub, sub_use_visits = 'T6a_L19_Ca')
+uds_6A_2018_sub <- rename(uds_6A_2018_sub, sub_use_patients = 'T6a_L19_Cb')
+
+uds_6A_2019_sub <- rename(uds_6A_2019_sub, grant_num = '-...2')
+uds_6A_2019_sub <- rename(uds_6A_2019_sub, sub_use_visits = 'T6a_L19_Ca')
+uds_6A_2019_sub <- rename(uds_6A_2019_sub, sub_use_patients = 'T6a_L19_Cb')
+
+uds_6A_2020_sub <- rename(uds_6A_2020_sub, grant_num = '...2')
+uds_6A_2020_sub <- rename(uds_6A_2020_sub, sub_use_visits = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)')
+uds_6A_2020_sub <- rename(uds_6A_2020_sub, sub_use_patients = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)')
+
+uds_6A_2021_sub <- rename(uds_6A_2021_sub, grant_num = '...2')
+uds_6A_2021_sub <- rename(uds_6A_2021_sub, sub_use_visits = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)')
+uds_6A_2021_sub <- rename(uds_6A_2021_sub, sub_use_patients = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)')
+
+uds_6A_2022_sub <- rename(uds_6A_2022_sub, grant_num = '...2')
+uds_6A_2022_sub <- rename(uds_6A_2022_sub, sub_use_visits = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Visits by Diagnosis Regardless of Primacy (a)')
+uds_6A_2022_sub <- rename(uds_6A_2022_sub, sub_use_patients = 'Other substance-related disorders (excluding tobacco use disorders)-Number of Patients with Diagnosis (b)')
+```
+
+#Table 8A
+```{r Import Data}
+
+uds_8A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table8A", skip = 1)
+```
+
+```{r Clean Data}
+
+uds_8A_2015_sub <- subset(uds_8A_2015, select = c("-...2", "T8a_L7_Ca", "T8a_L7_Cc"))
+uds_8A_2016_sub <- subset(uds_8A_2016, select = c("-...2", "T8a_L7_Ca", "T8a_L7_Cc"))
+uds_8A_2017_sub <- subset(uds_8A_2017, select = c("-...2", "T8a_L7_Ca", "T8a_L7_Cc"))
+uds_8A_2018_sub <- subset(uds_8A_2018, select = c("-...2", "T8a_L7_Ca", "T8a_L7_Cc"))
+uds_8A_2019_sub <- subset(uds_8A_2019, select = c("-...2", "T8a_L7_Ca", "T8a_L7_Cc"))
+uds_8A_2020_sub <- subset(uds_8A_2020, select = c("...2", "Substance Use Disorder-Accrued Cost (a)", "Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)"))
+uds_8A_2021_sub <- subset(uds_8A_2021, select = c("...2", "Substance Use Disorder-Accrued Cost (a)", "Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)"))
+uds_8A_2022_sub <- subset(uds_8A_2022, select = c("...2", "Substance Use Disorder-Accrued Cost (a)", "Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)"))
+```
+
+```{r Rename Variables}
+
+uds_8A_2015_sub <- rename(uds_8A_2015_sub, grant_num = '-...2')
+uds_8A_2015_sub <- rename(uds_8A_2015_sub, sub_use_accrued_cost = 'T8a_L7_Ca')
+uds_8A_2015_sub <- rename(uds_8A_2015_sub, sub_use_direct_cost = 'T8a_L7_Cc')
+
+uds_8A_2016_sub <- rename(uds_8A_2016_sub, grant_num = '-...2')
+uds_8A_2016_sub <- rename(uds_8A_2016_sub, sub_use_accrued_cost = 'T8a_L7_Ca')
+uds_8A_2016_sub <- rename(uds_8A_2016_sub, sub_use_direct_cost = 'T8a_L7_Cc')
+
+uds_8A_2017_sub <- rename(uds_8A_2017_sub, grant_num = '-...2')
+uds_8A_2017_sub <- rename(uds_8A_2017_sub, sub_use_accrued_cost = 'T8a_L7_Ca')
+uds_8A_2017_sub <- rename(uds_8A_2017_sub, sub_use_direct_cost = 'T8a_L7_Cc')
+
+uds_8A_2018_sub <- rename(uds_8A_2018_sub, grant_num = '-...2')
+uds_8A_2018_sub <- rename(uds_8A_2018_sub, sub_use_accrued_cost = 'T8a_L7_Ca')
+uds_8A_2018_sub <- rename(uds_8A_2018_sub, sub_use_direct_cost = 'T8a_L7_Cc')
+
+uds_8A_2019_sub <- rename(uds_8A_2019_sub, grant_num = '-...2')
+uds_8A_2019_sub <- rename(uds_8A_2019_sub, sub_use_accrued_cost = 'T8a_L7_Ca')
+uds_8A_2019_sub <- rename(uds_8A_2019_sub, sub_use_direct_cost = 'T8a_L7_Cc')
+
+uds_8A_2020_sub <- rename(uds_8A_2020_sub, grant_num = '...2')
+uds_8A_2020_sub <- rename(uds_8A_2020_sub, sub_use_accrued_cost = 'Substance Use Disorder-Accrued Cost (a)')
+uds_8A_2020_sub <- rename(uds_8A_2020_sub, sub_use_direct_cost = 'Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)')
+
+uds_8A_2021_sub <- rename(uds_8A_2021_sub, grant_num = '...2')
+uds_8A_2021_sub <- rename(uds_8A_2021_sub, sub_use_accrued_cost = 'Substance Use Disorder-Accrued Cost (a)')
+uds_8A_2021_sub <- rename(uds_8A_2021_sub, sub_use_direct_cost = 'Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)')
+
+uds_8A_2022_sub <- rename(uds_8A_2022_sub, grant_num = '...2')
+uds_8A_2022_sub <- rename(uds_8A_2022_sub, sub_use_accrued_cost = 'Substance Use Disorder-Accrued Cost (a)')
+uds_8A_2022_sub <- rename(uds_8A_2022_sub, sub_use_direct_cost = 'Substance Use Disorder-Total Cost After Allocation of Facility and Non-Clinical Support Services (c)')
+```
+
+#PAT Variable
+```{r Import Data}
+
+uds_PAT_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "HITInformation", skip = 1)
+uds_PAT_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "OtherDataElements", skip = 1)
+```
+
+```{r Clean Data}
+
+uds_PAT_2016_sub <- subset(uds_PAT_2016, select = c("-...2", "Tehr_L12b_Ca"))
+uds_PAT_2017_sub <- subset(uds_PAT_2017, select = c("-...2", "Tode_L1b_Ca"))
+uds_PAT_2018_sub <- subset(uds_PAT_2018, select = c("-...2", "Tode_L1b_Ca"))
+uds_PAT_2019_sub <- subset(uds_PAT_2019, select = c("-...2", "Tode_L1b_Ca"))
+uds_PAT_2020_sub <- subset(uds_PAT_2020, select = c("...2", "How many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, or physician assistant, with a DATA waiver working on behalf of the health center?-Number of Patients (1b)"))
+uds_PAT_2021_sub <- subset(uds_PAT_2021, select = c("...2", "During the calendar year, how many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, physician assistant, or certified nurse midwife with a DATA waiver working on behalf of the health center?-Number of Patients (1b)"))
+uds_PAT_2022_sub <- subset(uds_PAT_2022, select = c("...2", "During the calendar year, how many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, physician assistant, or certified nurse midwife with a DATA waiver working on behalf of the health center?-Number of Patients (1b)"))
+```
+
+```{r Rename Variables}
+
+uds_PAT_2016_sub <- rename(uds_PAT_2016_sub, grant_num = '-...2')
+uds_PAT_2016_sub <- rename(uds_PAT_2016_sub, pat_patients = 'Tehr_L12b_Ca')
+
+uds_PAT_2017_sub <- rename(uds_PAT_2017_sub, grant_num = '-...2')
+uds_PAT_2017_sub <- rename(uds_PAT_2017_sub, pat_patients = 'Tode_L1b_Ca')
+
+uds_PAT_2018_sub <- rename(uds_PAT_2018_sub, grant_num = '-...2')
+uds_PAT_2018_sub <- rename(uds_PAT_2018_sub, pat_patients = 'Tode_L1b_Ca')
+
+uds_PAT_2019_sub <- rename(uds_PAT_2019_sub, grant_num = '-...2')
+uds_PAT_2019_sub <- rename(uds_PAT_2019_sub, pat_patients = 'Tode_L1b_Ca')
+
+uds_PAT_2020_sub <- rename(uds_PAT_2020_sub, grant_num = '...2')
+uds_PAT_2020_sub <- rename(uds_PAT_2020_sub, pat_patients = 'How many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, or physician assistant, with a DATA waiver working on behalf of the health center?-Number of Patients (1b)')
+
+uds_PAT_2021_sub <- rename(uds_PAT_2021_sub, grant_num = '...2')
+uds_PAT_2021_sub <- rename(uds_PAT_2021_sub, pat_patients = 'During the calendar year, how many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, physician assistant, or certified nurse midwife with a DATA waiver working on behalf of the health center?-Number of Patients (1b)')
+
+uds_PAT_2022_sub <- rename(uds_PAT_2022_sub, grant_num = '...2')
+uds_PAT_2022_sub <- rename(uds_PAT_2022_sub, pat_patients = 'During the calendar year, how many patients received MAT for opioid use disorder from a physician, certified nurse practitioner, physician assistant, or certified nurse midwife with a DATA waiver working on behalf of the health center?-Number of Patients (1b)')
+```
+
+#Combine and Collapse by State
+```{r cbind Each Year}
+
+#2015
+uds_2015_full <- merge(uds_6A_2015_sub, uds_8A_2015_sub, by = "grant_num") %>%
+  merge(uds_state_2015_sub, by = "grant_num") %>%
+  mutate(year = 2015)
+
+#2016
+uds_2016_full <- merge(uds_6A_2016_sub, uds_8A_2016_sub, by = "grant_num") %>%
+  merge(uds_PAT_2016_sub, by = "grant_num") %>%
+  merge(uds_state_2016_sub, by = "grant_num") %>%
+  mutate(year = 2016)
+
+#2017
+uds_2017_full <- merge(uds_6A_2017_sub, uds_8A_2017_sub, by = "grant_num") %>%
+  merge(uds_PAT_2017_sub, by = "grant_num") %>%
+  merge(uds_state_2017_sub, by = "grant_num") %>%
+  mutate(year = 2017)
+
+#2018
+uds_2018_full <- merge(uds_6A_2018_sub, uds_8A_2018_sub, by = "grant_num") %>%
+  merge(uds_PAT_2018_sub, by = "grant_num") %>%
+  merge(uds_state_2018_sub, by = "grant_num") %>%
+  mutate(year = 2018)
+
+#2019
+uds_2019_full <- merge(uds_6A_2019_sub, uds_8A_2019_sub, by = "grant_num") %>%
+  merge(uds_PAT_2019_sub, by = "grant_num") %>%
+  merge(uds_state_2019_sub, by = "grant_num") %>%
+  mutate(year = 2019)
+
+#2020
+uds_2020_full <- merge(uds_6A_2020_sub, uds_8A_2020_sub, by = "grant_num") %>%
+  merge(uds_PAT_2020_sub, by = "grant_num") %>%
+  merge(uds_state_2020_sub, by = "grant_num") %>%
+  mutate(year = 2020)
+
+#2021
+uds_8A_2021_sub[uds_8A_2021_sub == "-"] <- NA
+uds_8A_2021_sub[uds_8A_2021_sub == "--"] <- NA
+uds_8A_2021_sub[uds_8A_2021_sub == "---"] <- NA
+
+uds_2021_full <- merge(uds_6A_2021_sub, uds_8A_2021_sub, by = "grant_num", all.x = TRUE) %>%
+  merge(uds_PAT_2021_sub, by = "grant_num") %>%
+  merge(uds_state_2021_sub, by = "grant_num") %>%
+  mutate(year = 2021)
+
+#2022
+uds_8A_2022_sub[uds_8A_2022_sub == "-"] <- NA
+uds_8A_2022_sub[uds_8A_2022_sub == "--"] <- NA
+uds_8A_2022_sub[uds_8A_2022_sub == "---"] <- NA
+
+uds_2022_full <- merge(uds_6A_2022_sub, uds_8A_2022_sub, by = "grant_num", all.x = TRUE) %>%
+  merge(uds_PAT_2022_sub, by = "grant_num") %>%
+  merge(uds_state_2022_sub, by = "grant_num") %>%
+  mutate(year = 2022)
+```
+
+```{r rbind All Years}
+
+uds_full <- bind_rows(uds_2015_full, uds_2016_full, uds_2017_full, uds_2018_full, uds_2019_full, uds_2020_full, uds_2021_full, uds_2022_full)
+```
+
+```{r Replace NAs}
+
+uds_full[uds_full == "-"] <- NA
+uds_full[uds_full == "--"] <- NA
+uds_full[uds_full == "---"] <- NA
+```
+
+```{r Convert to Numeric}
+
+uds_full$sub_use_visits <- as.numeric(uds_full$sub_use_visits)
+uds_full$sub_use_patients <- as.numeric(uds_full$sub_use_patients)
+uds_full$sub_use_accrued_cost <- as.numeric(uds_full$sub_use_accrued_cost)
+uds_full$sub_use_direct_cost <- as.numeric(uds_full$sub_use_direct_cost)
+uds_full$pat_patients <- as.numeric(uds_full$pat_patients)
+```
+
+```{r Collapse by State}
+
+uds_full_state <- uds_full %>% 
+  group_by(state, year) %>%
+  summarize(sub_use_visits = sum(sub_use_visits, na.rm = TRUE),
+            sub_use_patients = sum(sub_use_patients, na.rm = TRUE),
+            sub_use_accrued_cost = sum(sub_use_accrued_cost, na.rm = TRUE),
+            sub_use_direct_cost = sum(sub_use_direct_cost, na.rm = TRUE),
+            pat_patients = sum(pat_patients, na.rm = TRUE))
+```
+
+#UDS Map Data
+```{r Import Data}
+
+uds_3A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table3A", skip = 1)
+```
+
+```{r Clean Data}
+
+uds_3A_2015_sub <- uds_3A_2015[c(2, 33:78)]
+uds_3A_2016_sub <- uds_3A_2016[c(2, 33:78)]
+uds_3A_2017_sub <- uds_3A_2017[c(2, 33:78)]
+uds_3A_2018_sub <- uds_3A_2018[c(2, 33:78)]
+uds_3A_2019_sub <- uds_3A_2019[c(2, 33:78)]
+uds_3A_2020_sub <- uds_3A_2020[c(2, 33:78)]
+uds_3A_2021_sub <- uds_3A_2021[c(2, 33:78)]
+uds_3A_2022_sub <- uds_3A_2022[c(2, 33:78)]
+```
+
+```{r Rename Variables}
+
+uds_3A_2015_sub <- rename(uds_3A_2015_sub, grant_num = '-...2')
+uds_3A_2016_sub <- rename(uds_3A_2016_sub, grant_num = '-...2')
+uds_3A_2017_sub <- rename(uds_3A_2017_sub, grant_num = '-...2')
+uds_3A_2018_sub <- rename(uds_3A_2018_sub, grant_num = '-...2')
+uds_3A_2019_sub <- rename(uds_3A_2019_sub, grant_num = '-...2')
+uds_3A_2020_sub <- rename(uds_3A_2020_sub, grant_num = '...2')
+uds_3A_2021_sub <- rename(uds_3A_2021_sub, grant_num = '...2')
+uds_3A_2022_sub <- rename(uds_3A_2022_sub, grant_num = '...2')
+```
+
+```{r Merge with State}
+
+#2015
+uds_2015_map <- merge(uds_3A_2015_sub, uds_state_2015_sub, by = "grant_num") %>%
+  mutate(year = 2015)
+
+#2016
+uds_2016_map <- merge(uds_3A_2016_sub, uds_state_2016_sub, by = "grant_num") %>%
+  mutate(year = 2016)
+
+#2017
+uds_2017_map <- merge(uds_3A_2017_sub, uds_state_2017_sub, by = "grant_num") %>%
+  mutate(year = 2017)
+
+#2018
+uds_2018_map <- merge(uds_3A_2018_sub, uds_state_2018_sub, by = "grant_num") %>%
+  mutate(year = 2018)
+
+#2019
+uds_2019_map <- merge(uds_3A_2019_sub, uds_state_2019_sub, by = "grant_num") %>%
+  mutate(year = 2019)
+
+#2020
+uds_2020_map <- merge(uds_3A_2020_sub, uds_state_2020_sub, by = "grant_num") %>%
+  mutate(year = 2020)
+
+#2021
+uds_3A_2021_sub[uds_3A_2021_sub == "-"] <- NA
+uds_3A_2021_sub[uds_3A_2021_sub == "--"] <- NA
+uds_3A_2021_sub[uds_3A_2021_sub == "---"] <- NA
+
+uds_2021_map <- merge(uds_3A_2021_sub, uds_state_2021_sub, by = "grant_num") %>%
+  mutate(year = 2021)
+
+#2022
+uds_3A_2022_sub[uds_3A_2022_sub == "-"] <- NA
+uds_3A_2022_sub[uds_3A_2022_sub == "--"] <- NA
+uds_3A_2022_sub[uds_3A_2022_sub == "---"] <- NA
+
+uds_2022_map <- merge(uds_3A_2022_sub, uds_state_2022_sub, by = "grant_num") %>%
+  mutate(year = 2022)
+```
+
+```{r Combine Years and Clean}
+
+uds_map <- bind_rows(uds_2015_map, uds_2016_map, uds_2017_map, uds_2018_map, uds_2019_map, uds_2020_map, uds_2021_map, uds_2022_map)
+
+uds_map[uds_map == "-"] <- NA
+uds_map[uds_map == "--"] <- NA
+uds_map[uds_map == "---"] <- NA
+
+uds_map <- uds_map %>% mutate_at(c(2:47,50:95), as.numeric)
+```
+
+```{r Collapse by State}
+
+uds_map_state <- uds_map %>% 
+  group_by(state, year) %>%
+  summarize(tot_adult_pats = sum(across(c(2:47,48:93)), na.rm=TRUE))
+```
+
+#Export
+```{r Save Files}
+
+setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS')
+ 
+write_csv(uds_full, "uds_full.csv")
+write_csv(uds_full_state, "uds_full_state.csv")
+write_csv(uds_map_state, "uds_map_state.csv")
+```
+

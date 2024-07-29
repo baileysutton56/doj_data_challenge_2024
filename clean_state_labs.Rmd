@@ -1,0 +1,128 @@
+---
+title: "Clean State Labs Positive Data"
+output: html_document
+date: "2024-07-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(readxl)
+library(tidyverse)
+library(data.table)
+```
+
+```{r Import Data}
+
+state_lab_2015 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2015 Public Data/2015NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2016 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2016 Public Data/2016NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2017 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2017 Public Data/2017NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2018 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2018 Public Data/2018NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2019 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2019 Public Data/NFLISPublicData_2019_Table2.csv", skip = 2)
+state_lab_2020 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2020 Public Data/2020NFLISWebsiteTable2.csv", skip = 3)
+state_lab_2021 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2021 Public Data/2021NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2022 Public Data/2022NFLISWebsiteTable2.xlsx", skip = 2)
+```
+
+#Clean Data
+```{r Subset by Drug}
+
+#list from Annual Reports 2015-2022
+
+opioids <- c("Fentanyl",
+             "Fluorofentanyl",
+             "Fluorofentanyl (unspecified isomer)",
+             "meta-Fluorofentanyl",
+             "ortho-Fluorofentanyl",
+             "para-Fluorofentanyl",
+             "Oxycodone",
+             "Buprenorphine",
+             "Tramadol",
+             "Hydrocodone",
+             "Acetyl fentanyl",
+             "Fluorobutyryl fentanyl (unspecified isomer)",
+             "Morphine",
+             "Codeine",
+             "Methadone",
+             "Hydromorphone",
+             "Metonitazene",
+             "Carfentanil", 
+             "Valeryl fentanyl", 
+             "Oxymorphone",
+             "Fluoroisobutyryl fentanyl",
+             "4-Fluoroisobutyryl fentanyl",
+             "Methoxyacetyl fentanyl",
+             "Cyclopropyl fentanyl",
+             "Furanyl fentanyl",
+             "U-47700",
+             "Acryl fentanyl",
+             "6-Monoacetylmorphine",
+             "3-Methylfentanyl",
+             "Butyryl fentanyl",
+             "Mitragynine",
+             "Propoxyphene",
+             "Meperidine"
+             ) 
+
+#subset
+state_lab_2015_sub <- subset(state_lab_2015, Drug %in% opioids)
+state_lab_2016_sub <- subset(state_lab_2016, Drug %in% opioids)
+state_lab_2017_sub <- subset(state_lab_2017, Drug %in% opioids)
+state_lab_2018_sub <- subset(state_lab_2018, Drug %in% opioids)
+state_lab_2019_sub <- subset(state_lab_2019, Drug %in% opioids)
+state_lab_2020_sub <- subset(state_lab_2020, Drug %in% opioids)
+state_lab_2021_sub <- subset(state_lab_2021, Drug %in% opioids)
+state_lab_2022_sub <- subset(state_lab_2022, Drug %in% opioids)
+```
+
+```{r Transpose}
+
+state_lab_2015_sub <- transpose(state_lab_2015_sub, make.name = "Drug", keep.names = "State")
+state_lab_2016_sub <- transpose(state_lab_2016_sub, make.name = "Drug", keep.names = "State")
+state_lab_2017_sub <- transpose(state_lab_2017_sub, make.name = "Drug", keep.names = "State")
+state_lab_2018_sub <- transpose(state_lab_2018_sub, make.name = "Drug", keep.names = "State")
+state_lab_2019_sub <- transpose(state_lab_2019_sub, make.name = "Drug", keep.names = "State")
+state_lab_2020_sub <- transpose(state_lab_2020_sub, make.name = "Drug", keep.names = "State")
+state_lab_2021_sub <- transpose(state_lab_2021_sub, make.name = "Drug", keep.names = "State")
+state_lab_2022_sub <- transpose(state_lab_2022_sub, make.name = "Drug", keep.names = "State")
+```
+
+```{r Add Year Variable}
+
+state_lab_2015_sub$year <- 2015
+state_lab_2016_sub$year <- 2016
+state_lab_2017_sub$year <- 2017
+state_lab_2018_sub$year <- 2018
+state_lab_2019_sub$year <- 2019
+state_lab_2020_sub$year <- 2020
+state_lab_2021_sub$year <- 2021
+state_lab_2022_sub$year <- 2022
+```
+
+```{r Concat Data}
+
+state_lab_all <- bind_rows(state_lab_2015_sub, state_lab_2016_sub, state_lab_2017_sub, state_lab_2018_sub, state_lab_2019_sub, state_lab_2020_sub, state_lab_2021_sub, state_lab_2022_sub)
+```
+
+```{r Sum by State Year}
+
+state_lab_state <- state_lab_all[c(1, 13, 2:12, 14:30)]
+
+state_lab_state$tot_opioids <- state_lab_state %>%
+  select(3:30) %>%
+  rowSums(na.rm = TRUE)
+
+state_lab_state <- subset(state_lab_state, select = c(State, year, tot_opioids))
+```
+
+#Export
+```{r Export}
+
+setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs')
+
+write_csv(state_lab_all, "state_labs_full.csv")
+
+write_csv(state_lab_state, "state_labs_bystateyear.csv")
+```
+

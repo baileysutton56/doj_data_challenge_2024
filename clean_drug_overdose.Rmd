@@ -1,0 +1,76 @@
+---
+title: "Clean State Drug Overdose Data"
+output: html_document
+date: "2024-07-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(tidyverse)
+```
+
+```{r Import Data}
+
+mort_data_2015 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2015.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2016 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2016.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2017 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2017.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2018 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2018.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2019 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2019.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2020 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2020.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2021 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2021.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+mort_data_2022 <- read_delim("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_mortality_data_2022.txt", delim = "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+
+```{r Clean Data}
+
+#drop columns and rows
+mort_data_2015 <- mort_data_2015[c(2,4:7)]
+mort_data_2015 <- mort_data_2015[1:51,]
+
+mort_data_2016 <- mort_data_2016[c(2,4:7)]
+mort_data_2016 <- mort_data_2016[1:51,]
+
+mort_data_2017 <- mort_data_2017[c(2,4:7)]
+mort_data_2017 <- mort_data_2017[1:51,]
+
+mort_data_2018 <- mort_data_2018[c(2,4:7)]
+mort_data_2018 <- mort_data_2018[1:51,]
+
+mort_data_2019 <- mort_data_2019[c(2,4:7)]
+mort_data_2019 <- mort_data_2019[1:51,]
+
+mort_data_2020 <- mort_data_2020[c(2,4:7)]
+mort_data_2020 <- mort_data_2020[1:51,]
+
+mort_data_2021 <- mort_data_2021[c(2,4:7)]
+mort_data_2021 <- mort_data_2021[1:51,]
+
+mort_data_2022 <- mort_data_2022[c(2,4:7)]
+mort_data_2022 <- mort_data_2022[1:51,]
+
+#add year variable
+mort_data_2015$year <- 2015
+mort_data_2016$year <- 2016
+mort_data_2017$year <- 2017
+mort_data_2018$year <- 2018
+mort_data_2019$year <- 2019
+mort_data_2020$year <- 2020
+mort_data_2021$year <- 2021
+mort_data_2022$year <- 2022
+```
+
+```{r Concat Data}
+
+mort_data_full <- rbind(mort_data_2015, mort_data_2016, mort_data_2017, mort_data_2018, mort_data_2019, mort_data_2020, mort_data_2021, mort_data_2022)
+```
+
+```{r Save Files}
+
+setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality')
+
+write_csv(mort_data_full, "drug_deaths_full.csv")
+```
+
+

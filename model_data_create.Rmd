@@ -1,0 +1,90 @@
+---
+title: "Model Data Creation"
+output: html_document
+date: "2024-07-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(tidyverse)
+library(stringr)
+```
+
+#Import Data
+```{r Import Data}
+
+acs <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/ACS_Controls_all.csv")
+uds <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/uds_full_state.csv")
+drug_deaths <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_deaths_full.csv")
+state_labs <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/state_labs_bystateyear.csv")
+state <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/states.csv")
+```
+
+#Clean Data
+```{r Clean State Variables}
+
+#ACS
+acs <- subset(acs, state != "Puerto Rico")
+acs <- merge(acs, state, by.x = "state", by.y = "State")
+
+#Drug Deaths
+drug_deaths <- merge(drug_deaths, state, by = "State")
+
+#State Labs
+state_labs$State <- str_squish(state_labs$State)
+state_labs <- merge(state_labs, state, by = "State")
+
+#UDS
+uds <- uds[which(uds$state != 'AS' &
+                   uds$state != 'FM' & 
+                   uds$state !=  'GU' & 
+                   uds$state !=  'MH' & 
+                   uds$state !=  'MP' & 
+                   uds$state !=  'PR' & 
+                   uds$state !=  'PW' & 
+                   uds$state !=  'VI'), ]
+```
+
+```{r Rename State and Year Columns}
+
+#ACS
+acs <- subset(acs, select = -c(state))
+
+acs <- rename(acs, state = Abbreviation)
+
+#Drug Deaths
+drug_deaths <- subset(drug_deaths, select = -c(State))
+
+drug_deaths <- rename(drug_deaths, state = Abbreviation)
+
+#State Labs
+state_labs <- subset(state_labs, select = -c(State))
+
+state_labs <- rename(state_labs, state = Abbreviation)
+```
+
+```{r Rename Drug Death Variables}
+
+drug_deaths <- rename(drug_deaths, tot_deaths = Deaths)
+drug_deaths <- rename(drug_deaths, crude_rate = 'Crude Rate')
+drug_deaths <- rename(drug_deaths, age_adj_rate = 'Age Adjusted Rate')
+```
+
+#Merge Data
+```{r Merge Model Datasets}
+
+models_full <- merge(acs, drug_deaths, by = c("state", "year")) %>%
+  merge(state_labs, by = c("state", "year")) %>%
+  merge(uds, by = c("state", "year"))
+```
+
+#Export Model Data
+```{r Save File}
+
+setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data')
+
+write_csv(models_full, "models_full.csv")
+```
+
