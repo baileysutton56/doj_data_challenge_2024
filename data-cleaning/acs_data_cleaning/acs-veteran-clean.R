@@ -3,7 +3,7 @@ library(readxl)
 
 
 # Read 2020 data
-vet_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/veteran-2020.xlsx', sheet='Sheet1')
+vet_2020 <- read_excel('/3. Import Data/Census ACS/2020/veteran-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 vet_2020 <- vet_2020 %>%
@@ -18,7 +18,7 @@ vet_2020 <- vet_2020 %>%
 ##
 
 
-Veteran <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Veteran.csv')
+Veteran <- read.csv('/3. Import Data/Census ACS/Veteran.csv')
 
 # Select relevant columns
 Veteran <- Veteran %>%
@@ -44,5 +44,5 @@ wide_vet_clean <- wide_vet_clean %>%
 vet_clean_all <- rbind(wide_vet_clean, vet_2020)
 
 # Export CSV
-write.csv(vet_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/veteran.csv')
+write.csv(vet_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/veteran.csv')
 
