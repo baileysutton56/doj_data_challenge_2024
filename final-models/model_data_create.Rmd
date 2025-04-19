@@ -15,11 +15,11 @@ library(stringr)
 #Import Data
 ```{r Import Data}
 
-acs <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/ACS_Controls_all.csv")
-uds <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/uds_full_state.csv")
-drug_deaths <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NCHS Mortality/drug_deaths_full.csv")
-state_labs <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/state_labs_bystateyear.csv")
-state <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/states.csv")
+acs <- read_csv("/3. Import Data/Census ACS/Final-Cleaned/ACS_Controls_all.csv")
+uds <- read_csv("/3. Import Data/UDS/uds_full_state.csv")
+drug_deaths <- read_csv("/3. Import Data/NCHS Mortality/drug_deaths_full.csv")
+state_labs <- read_csv("/3. Import Data/NFLIS State Labs/state_labs_bystateyear.csv")
+state <- read_csv("/3. Import Data/states.csv")
 ```
 
 #Clean Data
@@ -82,8 +82,6 @@ models_full <- merge(acs, drug_deaths, by = c("state", "year")) %>%
 
 #Export Model Data
 ```{r Save File}
-
-setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data')
 
 write_csv(models_full, "models_full.csv")
 ```
