@@ -6,7 +6,7 @@ library(readxl)
 
 
 # Read 2020 data
-inc_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/household-income-past12mo-2020.xlsx', sheet='Sheet1')
+inc_2020 <- read_excel('/3. Import Data/Census ACS/2020/household-income-past12mo-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 inc_2020 <- inc_2020 %>%
@@ -24,7 +24,7 @@ inc_2020_clean <- inc_2020 %>%
 inc_2020_clean <- rename(inc_2020_clean, NAME = '\r\n\r\nLabel')
 
 # Read file with all years except 2020
-Income <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income.csv')
+Income <- read.csv('/3. Import Data/Census ACS/Income.csv')
 
 # Select relevant columns
 Income <- Income %>%
@@ -68,7 +68,7 @@ wide_inc_clean <- select(wide_inc_clean,
 inc_clean_all <- rbind(wide_inc_clean, inc_2020_clean)
 
 # Export CSV
-write.csv(inc_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/income.csv')
+write.csv(inc_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/income.csv')
 
 
 
