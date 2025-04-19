@@ -12,7 +12,7 @@ library(readxl)
 # grad_prof B15003_023, B15003_024, B15003_025
 
 # Read file with all years except 2020
-Education <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Education.csv')
+Education <- read.csv('/3. Import Data/Census ACS/Education.csv')
 
 # Select relevant columns
 Education <- Education %>%
@@ -45,7 +45,7 @@ wide_education_clean <- select(wide_education_clean,
                                grad_prof)
 
 # Read 2020 data
-education_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/education-2020.xlsx', sheet='Sheet1')
+education_2020 <- read_excel('/3. Import Data/Census ACS/2020/education-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 education_2020 <- education_2020 %>%
@@ -59,5 +59,5 @@ education_clean_all <- education_clean_all %>%
   mutate_at(c(2:9), as.numeric)
 
 # Export CSV
-write.csv(education_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/education.csv')
+write.csv(education_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/education.csv')
 
