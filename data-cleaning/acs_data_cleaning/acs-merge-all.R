@@ -30,4 +30,4 @@ acs_controls <- acs_controls %>%
 
 acs_controls <- acs_controls %>% select(-`...1`)
 
-write.csv(acs_controls, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/ACS_Controls_all.csv')
+write.csv(acs_controls, '/3. Import Data/Census ACS/Final-Cleaned/ACS_Controls_all.csv')
