@@ -3,7 +3,7 @@ library(readxl)
 
 
 # Read 2020 data
-pov_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/poverty-by-age-2020.xlsx', sheet='Sheet1')
+pov_2020 <- read_excel('/3. Import Data/Census ACS/2020/poverty-by-age-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 pov_2020 <- pov_2020 %>%
@@ -18,7 +18,7 @@ pov_2020 <- pov_2020 %>%
 ##
 
 
-Poverty <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Poverty.csv')
+Poverty <- read.csv('/3. Import Data/Census ACS/Poverty.csv')
 
 # Select relevant columns
 Poverty <- Poverty %>%
@@ -40,7 +40,7 @@ wide_pov_clean <- wide_pov %>%
 pov_clean_all <- rbind(wide_pov_clean, pov_2020)
 
 # Export CSV
-write.csv(pov_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/poverty.csv')
+write.csv(pov_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/poverty.csv')
 
 
 
