@@ -15,14 +15,14 @@ library(tidyverse)
 #State
 ```{r Import Data}
 
-uds_state_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "HealthCenterInfo")
-uds_state_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "HealthCenterInfo")
-uds_state_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "HealthCenterInfo")
-uds_state_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "HealthCenterInfo")
-uds_state_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "HealthCenterInfo")
-uds_state_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "HealthCenterInfo")
-uds_state_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "HealthCenterInfo")
-uds_state_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "HealthCenterInfo")
+uds_state_2015 <- read_excel("h80-2015.xlsx", sheet = "HealthCenterInfo")
+uds_state_2016 <- read_excel("h80-2016.xlsx", sheet = "HealthCenterInfo")
+uds_state_2017 <- read_excel("h80-2017.xlsx", sheet = "HealthCenterInfo")
+uds_state_2018 <- read_excel("h80-2018.xlsx", sheet = "HealthCenterInfo")
+uds_state_2019 <- read_excel("h80-2019.xlsx", sheet = "HealthCenterInfo")
+uds_state_2020 <- read_excel("h80-2020.xlsx", sheet = "HealthCenterInfo")
+uds_state_2021 <- read_excel("h80-2021.xlsx", sheet = "HealthCenterInfo")
+uds_state_2022 <- read_excel("h80-2022.xlsx", sheet = "HealthCenterInfo")
 ```
 
 ```{r Clean Data}
@@ -67,14 +67,14 @@ uds_state_2022_sub <- rename(uds_state_2022_sub, state = 'HealthCenterState')
 #Table 6A
 ```{r Import Data}
 
-uds_6A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table6A", skip = 1)
-uds_6A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2015 <- read_excel("h80-2015.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2016 <- read_excel("h80-2016.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2017 <- read_excel("h80-2017.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2018 <- read_excel("h80-2018.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2019 <- read_excel("h80-2019.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2020 <- read_excel("h80-2020.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2021 <- read_excel("h80-2021.xlsx", sheet = "Table6A", skip = 1)
+uds_6A_2022 <- read_excel("h80-2022.xlsx", sheet = "Table6A", skip = 1)
 ```
 
 ```{r Clean Data}
@@ -127,14 +127,14 @@ uds_6A_2022_sub <- rename(uds_6A_2022_sub, sub_use_patients = 'Other substance-r
 #Table 8A
 ```{r Import Data}
 
-uds_8A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table8A", skip = 1)
-uds_8A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2015 <- read_excel("h80-2015.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2016 <- read_excel("h80-2016.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2017 <- read_excel("h80-2017.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2018 <- read_excel("h80-2018.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2019 <- read_excel("h80-2019.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2020 <- read_excel("h80-2020.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2021 <- read_excel("h80-2021.xlsx", sheet = "Table8A", skip = 1)
+uds_8A_2022 <- read_excel("h80-2022.xlsx", sheet = "Table8A", skip = 1)
 ```
 
 ```{r Clean Data}
@@ -187,13 +187,13 @@ uds_8A_2022_sub <- rename(uds_8A_2022_sub, sub_use_direct_cost = 'Substance Use 
 #PAT Variable
 ```{r Import Data}
 
-uds_PAT_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "HITInformation", skip = 1)
-uds_PAT_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "OtherDataElements", skip = 1)
-uds_PAT_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "OtherDataElements", skip = 1)
-uds_PAT_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "OtherDataElements", skip = 1)
-uds_PAT_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "OtherDataElements", skip = 1)
-uds_PAT_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "OtherDataElements", skip = 1)
-uds_PAT_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2016 <- read_excel("h80-2016.xlsx", sheet = "HITInformation", skip = 1)
+uds_PAT_2017 <- read_excel("h80-2017.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2018 <- read_excel("h80-2018.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2019 <- read_excel("h80-2019.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2020 <- read_excel("h80-2020.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2021 <- read_excel("h80-2021.xlsx", sheet = "OtherDataElements", skip = 1)
+uds_PAT_2022 <- read_excel("h80-2022.xlsx", sheet = "OtherDataElements", skip = 1)
 ```
 
 ```{r Clean Data}
@@ -325,14 +325,14 @@ uds_full_state <- uds_full %>%
 #UDS Map Data
 ```{r Import Data}
 
-uds_3A_2015 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2015.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2016 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2016.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2017 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2017.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2018 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2018.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2019 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2019.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2020 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2020.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2021 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2021.xlsx", sheet = "Table3A", skip = 1)
-uds_3A_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/h80-2022.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2015 <- read_excel("h80-2015.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2016 <- read_excel("h80-2016.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2017 <- read_excel("h80-2017.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2018 <- read_excel("h80-2018.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2019 <- read_excel("h80-2019.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2020 <- read_excel("h80-2020.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2021 <- read_excel("h80-2021.xlsx", sheet = "Table3A", skip = 1)
+uds_3A_2022 <- read_excel("h80-2022.xlsx", sheet = "Table3A", skip = 1)
 ```
 
 ```{r Clean Data}
@@ -422,8 +422,6 @@ uds_map_state <- uds_map %>%
 
 #Export
 ```{r Save Files}
-
-setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS')
  
 write_csv(uds_full, "uds_full.csv")
 write_csv(uds_full_state, "uds_full_state.csv")
