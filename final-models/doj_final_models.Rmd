@@ -17,7 +17,7 @@ library(stargazer)
 #Import Data
 ```{r Import Data}
 
-models_full <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data/models_full.csv")
+models_full <- read_csv("/4. Export Data/models_full.csv")
 ```
 
 #Clean Data
