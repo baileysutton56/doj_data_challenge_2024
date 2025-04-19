@@ -5,7 +5,7 @@ library(readxl)
 
 
 # Read 2020 data
-hisp_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/ethnicity-2020.xlsx', sheet='Sheet1')
+hisp_2020 <- read_excel('/3. Import Data/Census ACS/2020/ethnicity-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 hisp_2020 <- hisp_2020 %>%
@@ -20,7 +20,7 @@ hisp_2020 <- hisp_2020 %>%
 
 
 # Read file with all years except 2020
-Hispanic_Latino <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Race Ethnicity.csv')
+Hispanic_Latino <- read.csv('/3. Import Data/Census ACS/Race Ethnicity.csv')
 
 # Select relevant columns
 Hispanic_Latino <- Hispanic_Latino %>%
@@ -41,4 +41,4 @@ wide_hisp_clean <- wide_hisp_clean %>%
 hisp_clean_all <- rbind(wide_hisp_clean, hisp_2020)
 
 # Export CSV
-write.csv(hisp_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/hispanic_latino.csv')
+write.csv(hisp_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/hispanic_latino.csv')
