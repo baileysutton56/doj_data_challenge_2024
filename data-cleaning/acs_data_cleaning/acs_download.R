@@ -5,7 +5,7 @@ library(tidyverse)
 v22 <- load_variables(2022, "acs1", cache = TRUE)
 View(v22)
 
-#write.csv(v22, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/5. Documentation/ACS_Variables_2022.csv')
+#write.csv(v22, '/5. Documentation/ACS_Variables_2022.csv')
 
 unique(v22$concept)
 
@@ -31,7 +31,7 @@ for (year in years) {
 
 total_pop_allyrs <- do.call(rbind, population_list)
 
-write.csv(total_pop_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Population.csv')
+write.csv(total_pop_allyrs, '/3. Import Data/Census ACS/Population.csv')
 
 
 # Median Income
@@ -53,7 +53,7 @@ for (year in years) {
 
 median_inc_allyrs <- do.call(rbind, income_list)
 
-write.csv(median_inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income.csv')
+write.csv(median_inc_allyrs, '/3. Import Data/Census ACS/Income.csv')
 
 
 # Household Income
@@ -100,7 +100,7 @@ flattened_inc_list <- flatten(inc_list)
 inc_allyrs <- bind_rows(flattened_inc_list)
 
 
-write.csv(inc_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Income.csv')
+write.csv(inc_allyrs, '/3. Import Data/Census ACS/Income.csv')
 
 
 
@@ -179,7 +179,7 @@ flattened_age_list <- flatten(age_list)
 sex_age_allyrs <- bind_rows(flattened_age_list)
 
 
-write.csv(sex_age_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Sex by Age.csv')
+write.csv(sex_age_allyrs, '/3. Import Data/Census ACS/Sex by Age.csv')
 
 
 # Sex/Gender
@@ -213,7 +213,7 @@ flattened_sex_list <- flatten(sex_list)
 sex_allyrs <- bind_rows(flattened_sex_list)
 
 
-write.csv(sex_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Sex Total.csv')
+write.csv(sex_allyrs, '/3. Import Data/Census ACS/Sex Total.csv')
 
 
 
@@ -263,7 +263,7 @@ flattened_race_list <- flatten(race_list)
 race_allyrs <- bind_rows(flattened_race_list)
 
 
-write.csv(race_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Race Ethnicity.csv')
+write.csv(race_allyrs, '/3. Import Data/Census ACS/Race Ethnicity.csv')
 
 
 # Education
@@ -318,7 +318,7 @@ flattened_edu_list <- flatten(edu_list)
 edu_allyrs <- bind_rows(flattened_edu_list)
 
 
-write.csv(edu_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Education.csv')
+write.csv(edu_allyrs, '/3. Import Data/Census ACS/Education.csv')
 
 
 
@@ -352,7 +352,7 @@ flattened_snap_list <- flatten(snap_list)
 snap_allyrs <- bind_rows(flattened_snap_list)
 
 
-write.csv(snap_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Food Stamps.csv')
+write.csv(snap_allyrs, '/3. Import Data/Census ACS/Food Stamps.csv')
 
 
 # Veteran Status
@@ -386,7 +386,7 @@ flattened_vet_list <- flatten(vet_list)
 vet_allyrs <- bind_rows(flattened_vet_list)
 
 
-write.csv(vet_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Veteran.csv')
+write.csv(vet_allyrs, '/3. Import Data/Census ACS/Veteran.csv')
 
 
 # Employment
@@ -424,7 +424,7 @@ flattened_emp_list <- flatten(emp_list)
 emp_allyrs <- bind_rows(flattened_emp_list)
 
 
-write.csv(emp_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Employment.csv')
+write.csv(emp_allyrs, '/3. Import Data/Census ACS/Employment.csv')
 
 
 
@@ -459,7 +459,7 @@ flattened_vet_list <- flatten(vet_list)
 vet_allyrs <- bind_rows(flattened_vet_list)
 
 
-write.csv(vet_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Veteran.csv')
+write.csv(vet_allyrs, '/3. Import Data/Census ACS/Veteran.csv')
 
 
 # Employment
@@ -497,7 +497,7 @@ flattened_emp_list <- flatten(emp_list)
 emp_allyrs <- bind_rows(flattened_emp_list)
 
 
-write.csv(emp_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Employment.csv')
+write.csv(emp_allyrs, '/3. Import Data/Census ACS/Employment.csv')
 
 
 # Health Insurance
@@ -549,7 +549,7 @@ flattened_ins_list <- flatten(ins_list)
 ins_allyrs <- bind_rows(flattened_ins_list)
 
 
-write.csv(ins_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Health Insurance.csv')
+write.csv(ins_allyrs, '/3. Import Data/Census ACS/Health Insurance.csv')
 
 
 
@@ -583,7 +583,7 @@ flattened_pov_list <- flatten(pov_list)
 pov_allyrs <- bind_rows(flattened_pov_list)
 
 
-write.csv(pov_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Poverty.csv')
+write.csv(pov_allyrs, '/3. Import Data/Census ACS/Poverty.csv')
 
 
 
@@ -622,5 +622,5 @@ flattened_dis_list <- flatten(dis_list)
 dis_allyrs <- bind_rows(flattened_dis_list)
 
 
-write.csv(dis_allyrs, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Disability.csv')
+write.csv(dis_allyrs, '/3. Import Data/Census ACS/Disability.csv')
 
