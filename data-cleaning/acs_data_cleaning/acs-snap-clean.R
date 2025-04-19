@@ -9,7 +9,7 @@ library(readxl)
 
 
 # Read file with all years except 2020
-Food_Stamps <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Food Stamps.csv')
+Food_Stamps <- read.csv('/3. Import Data/Census ACS/Food Stamps.csv')
 
 # Select relevant columns
 Food_Stamps <- Food_Stamps %>%
@@ -33,7 +33,7 @@ wide_snap_clean <- select(wide_snap,
                           household_did_not_receive_snap)
 
 # Read 2020 data
-snap_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/snap-presence-of-children-2020.xlsx', sheet='Sheet1')
+snap_2020 <- read_excel('/3. Import Data/Census ACS/2020/snap-presence-of-children-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 snap_2020 <- snap_2020 %>%
@@ -47,6 +47,6 @@ snap_clean_all <- snap_clean_all %>%
   mutate_at(c(2:4), as.numeric)
 
 # Export CSV
-write.csv(snap_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/snap.csv')
+write.csv(snap_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/snap.csv')
 
 
