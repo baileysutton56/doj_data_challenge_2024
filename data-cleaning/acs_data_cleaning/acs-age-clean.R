@@ -5,7 +5,7 @@ library(readxl)
 
 
 # Read 2020 data
-age_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/population-by-age-2020.xlsx', sheet='Sheet1')
+age_2020 <- read_excel('/3. Import Data/Census ACS/2020/population-by-age-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 age_2020 <- age_2020 %>%
@@ -20,7 +20,7 @@ age_2020 <- age_2020 %>%
 
 
 # Read file with all years except 2020
-Age <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Sex by Age.csv')
+Age <- read.csv('/3. Import Data/Census ACS/Sex by Age.csv')
 
 # Select relevant columns
 Age <- Age %>%
@@ -67,7 +67,7 @@ wide_age_clean <- select(wide_age_clean,
 age_clean_all <- rbind(wide_age_clean, age_2020)
 
 # Export CSV
-write.csv(age_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/age.csv')
+write.csv(age_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/age.csv')
 
 
 
