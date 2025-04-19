@@ -16,9 +16,9 @@ library(viridis)
 #Import Data
 ```{r Import Data}
 
-models_full <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data/models_full.csv")
-uds_map_state <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/UDS/uds_map_state.csv")
-states <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/states.csv")
+models_full <- read_csv("/4. Export Data/models_full.csv")
+uds_map_state <- read_csv("/3. Import Data/UDS/uds_map_state.csv")
+states <- read_csv("/3. Import Data/states.csv")
 ```
 
 #Clean UDS Map Data
@@ -206,8 +206,6 @@ deaths_map_plot <- ggplot(deaths_map, aes(long, lat, fill = age_adj_rate, group 
 
 #Export
 ```{r Export Visualizations}
-
-setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/4. Export Data')
 
 ggsave("pat_map_plot.png", pat_map_plot, width = 10, height = 4, dpi = 300, units = "in")
 ggsave("opioids_map_plot.png", opioids_map_plot, width = 10, height = 4, dpi = 300, units = "in")
