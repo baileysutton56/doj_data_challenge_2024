@@ -15,14 +15,14 @@ library(data.table)
 
 ```{r Import Data}
 
-state_lab_2015 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2015 Public Data/2015NFLISWebsiteTable2.csv", skip = 2)
-state_lab_2016 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2016 Public Data/2016NFLISWebsiteTable2.csv", skip = 2)
-state_lab_2017 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2017 Public Data/2017NFLISWebsiteTable2.csv", skip = 2)
-state_lab_2018 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2018 Public Data/2018NFLISWebsiteTable2.csv", skip = 2)
-state_lab_2019 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2019 Public Data/NFLISPublicData_2019_Table2.csv", skip = 2)
-state_lab_2020 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2020 Public Data/2020NFLISWebsiteTable2.csv", skip = 3)
-state_lab_2021 <- read_csv("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2021 Public Data/2021NFLISWebsiteTable2.csv", skip = 2)
-state_lab_2022 <- read_excel("H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs/2022 Public Data/2022NFLISWebsiteTable2.xlsx", skip = 2)
+state_lab_2015 <- read_csv("2015 Public Data/2015NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2016 <- read_csv("2016 Public Data/2016NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2017 <- read_csv("2017 Public Data/2017NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2018 <- read_csv("2018 Public Data/2018NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2019 <- read_csv("2019 Public Data/NFLISPublicData_2019_Table2.csv", skip = 2)
+state_lab_2020 <- read_csv("2020 Public Data/2020NFLISWebsiteTable2.csv", skip = 3)
+state_lab_2021 <- read_csv("2021 Public Data/2021NFLISWebsiteTable2.csv", skip = 2)
+state_lab_2022 <- read_excel("2022 Public Data/2022NFLISWebsiteTable2.xlsx", skip = 2)
 ```
 
 #Clean Data
@@ -118,8 +118,6 @@ state_lab_state <- subset(state_lab_state, select = c(State, year, tot_opioids))
 
 #Export
 ```{r Export}
-
-setwd('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/NFLIS State Labs')
 
 write_csv(state_lab_all, "state_labs_full.csv")
 
