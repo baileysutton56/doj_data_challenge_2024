@@ -5,7 +5,7 @@ library(readxl)
 
 
 # Read 2020 data
-ins_2020 <- read_excel('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/2020/health-insurance-2020.xlsx', sheet='Sheet1')
+ins_2020 <- read_excel('/3. Import Data/Census ACS/2020/health-insurance-2020.xlsx', sheet='Sheet1')
 
 # Remove commas from values
 ins_2020 <- ins_2020 %>%
@@ -27,7 +27,7 @@ ins_2020_clean <- ins_2020_clean %>%
 
 
 # Read file with all years except 2020
-Health_Insurance <- read.csv('H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Health Insurance.csv')
+Health_Insurance <- read.csv('/3. Import Data/Census ACS/Health Insurance.csv')
 
 # Select relevant columns
 Health_Insurance <- Health_Insurance %>%
@@ -55,5 +55,5 @@ wide_ins_clean <- select(wide_ins_clean,
 ins_clean_all <- rbind(wide_ins_clean, ins_2020_clean)
 
 # Export CSV
-write.csv(ins_clean_all, 'H:/BPHC/OSBO/Data Lab/Enterprise Analytics Team/Projects/10. DOJ Data Challenge/3. Import Data/Census ACS/Final-Cleaned/health_insurance.csv')
+write.csv(ins_clean_all, '/3. Import Data/Census ACS/Final-Cleaned/health_insurance.csv')
 
